@@ -1,0 +1,170 @@
+<div class="container-fluid">
+    <!-- Breadcrumb -->
+    <div class="page-header">
+        <div class="breadcrum-title">
+            <h2>Create New Booking Profile</h2>
+        </div>
+        <div class="col-auto pageheader-btn">
+            <button routerLink="/" class="btn button--effect-1 me-3">
+                Today
+            </button>
+            <button routerLink="/" class="btn button--effect-2">
+                Manage Booking
+            </button>
+        </div>
+    </div>
+    <div class="main-content-wrapper">
+
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="showStep(1)" [ngClass]="{ 'active': currentStep === 1 }">
+                            <h6>Booking Theme</h6> <span class="round-tab"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="showStep(2)" [ngClass]="{ 'active': currentStep === 2 }">
+                            <h6>Venue & Duration</h6> <span class="round-tab"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="showStep(3)" [ngClass]="{ 'active': currentStep === 3 }">
+                            <h6>Customer Type</h6> <span class="round-tab"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="showStep(4)" [ngClass]="{ 'active': currentStep === 4 }">
+                            <h6>Create Tickets/Services</h6> <span class="round-tab"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="showStep(5)" [ngClass]="{ 'active': currentStep === 5 }">
+                            <h6>View Profile</h6> <span class="round-tab"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="showStep(6)" [ngClass]="{ 'active': currentStep === 6 }">
+                            <h6>Create Ticket</h6> <span class="round-tab"></span></a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" [ngClass]="{ 'show active': currentStep === 1 }">
+                        <div class="section-title ">
+                            <h2>Booking Theme</h2>
+                        </div>
+                    </div>
+                    <div class="tab-pane" [ngClass]="{ 'show active': currentStep === 2 }">
+                        <div class="section-title ">
+                            <h2>Venue & Duration</h2>
+                        </div>
+                    </div>
+                    <div class="tab-pane" [ngClass]="{ 'show active': currentStep === 3 }">
+                        <div class="section-title ">
+                            <h2>Customer Type</h2>
+                        </div>
+                    </div>
+                    <div class="tab-pane" [ngClass]="{ 'show active': currentStep === 4 }">
+                        <div class="section-title ">
+                            <h2>Create Tickets/Services</h2>
+                        </div>
+                    </div>
+                    <div class="tab-pane" [ngClass]="{ 'show active': currentStep === 5 }">
+                        <div class="section-title ">
+                            <h2>View & Create Customer Detail Form</h2>
+                        </div>
+                        <div class="setCoverImage">
+                            <div class="cover-image">
+                                <input type="file" accept=".png, .jpg, .jpeg" (change)="onSelectFile($event)" id="coverImage">
+                                <label for="coverImage">Change Image</label>
+                            </div>
+                            <div class="cover-preview">
+                                <img [src]="url" class="img-fluid" alt="Cover image">
+                            </div>
+
+                            <div class="block-profile">
+                                <div class="row g-3 row-cols-1 row-cols-md-2 justify-content-start align-items-center">
+                                    <div class="col-md-auto">
+                                        <div class="avatar-upload">
+                                            <div class="avatar-edit">
+                                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" (change)="selectProfile($event)" />
+                                                <label for="imageUpload"></label>
+                                            </div>
+                                            <div class="avatar-preview">
+                                                <img [src]="profileUrl" alt="imagePreview" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="content">
+                                            <h3 class="text-white">Lorem Epsum</h3>
+                                            <p class="text-white mb-0">Lorem Epsum</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widgets-card">
+                            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                                <div class="row g-3 row-cols-1 row-cols-md-2 justify-content-between align-items-start">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label class="sky-color">Visit City Palace, Udaipur</label>
+                                            <textarea type="text" class="form-control" placeholder="Write here ..."></textarea>
+                                            <!-- <ckeditor [editor]="Editor" formControlName="content" data="<p>Hello, world!</p>"></ckeditor> -->
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="sky-color">Organised By</label>
+                                            <input type="email" class="form-control" placeholder="Organiser name here">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="sky-color">Organiser Contact</label>
+                                            <input type="email" class="form-control" placeholder="Enter contact number here (Optional)">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="sky-color">Organiser email</label>
+                                            <input type="email" class="form-control" placeholder="Enter email here (Optional)">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card ">
+                                            <div class="card-header ">
+                                                <h5 class="card-title ">Customer Details</h5>
+                                            </div>
+                                            <div class="card-body ">
+                                                <div class="mb-3 ">
+                                                    <select [(ngModel)]="selectedOption " formControlName="pre_define_from " class="form-select ">
+                                                        <option value=" " disabled selected>Select Pre Defined Form</option>
+                                                        <option *ngFor="let option of options " [value]="option.id ">{{option.name}}</option>                                                     
+                                                    </select>
+                                                </div>
+                                                <h6>Create a Custom Form</h6>
+
+                                                <div class="text-center ">
+                                                    <button type="button " class="btn button--effect-2 ">
+                                                        Pay & Book Tickets
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <button type="button " class="btn button--effect-2 ">
+                                            Pay & Book Tickets
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane " [ngClass]="{ 'show active': currentStep===6 } ">
+                        <div class="section-title ">
+                            <h2>Create Ticket</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
