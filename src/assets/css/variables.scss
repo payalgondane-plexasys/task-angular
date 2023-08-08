@@ -226,36 +226,6 @@ select {
 }
 
 
-/* Select2 Plugin */
-
-.select2-container--default .select2-selection--multiple {
-    border: 1px solid #40798c6b;
-    /*  height: calc(3.5rem + 2px);
-line-height: 2.25; */
-    border-radius: 3px;
-}
-
-.select2-container--default.select2-container--focus .select2-selection--multiple {
-    border: 1px solid #40798c6b;
-}
-
-.select2-container--default .select2-selection--multiple {
-    border: 1px solid #40798c6b!important;
-    min-height: calc(3.5rem + 2px)!important;
-    line-height: 1.25!important;
-    border-radius: 3px!important;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    margin: 23px 0 0 !important;
-    padding: 0 10px!important;
-}
-
-.select2 {
-    width: 100%!important;
-}
-
-
 /* ----------------------------------------------------------
 :: Breadcrum CSS
 ---------------------------------------------------------- */

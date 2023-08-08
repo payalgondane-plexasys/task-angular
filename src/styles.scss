@@ -152,6 +152,16 @@
                     font-size: 1rem;
                 }
             }
+            .nav-circle {
+                text-align: center;
+                height: 30px;
+                width: 30px;
+                background: #284070;
+                border-radius: 25px;
+                line-height: 1;
+                color: #fff!important;
+                padding: 6px;
+            }
             .nav-item.nav-search {
                 margin-left: 2rem;
                 input {
@@ -170,10 +180,10 @@
                     background-color: $blue-color;
                 }
             }
-            .nav-item.nav-profile.dropdown {
+            .nav-item.dropdown {
                 .dropdown-toggle {
                     &:after {
-                        display: none;
+                        display: none !important;
                     }
                 }
             }

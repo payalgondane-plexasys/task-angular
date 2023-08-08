@@ -90,19 +90,7 @@ setTimeout(function() {
                     })
                 }
             });
-            //Change sidebar and content-wrapper height
-            applyStyles();
 
-            function applyStyles() {
-                //Applying perfect scrollbar
-                if (!$('#mainpage').hasClass("rtl")) {
-
-                    if ($('#mainpage').hasClass("sidebar-fixed")) {
-                        var fixedSidebarScroll = new PerfectScrollbar('#sidebar .nav');
-                    }
-
-                }
-            }
 
             $('[data-toggle="minimize"]').on("click", function() {
                 $('#mainpage').toggleClass('sidebar-icon-only');
