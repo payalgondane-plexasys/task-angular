@@ -1,0 +1,56 @@
+<div class="container">
+    <h2>Bar Chart</h2>
+    <div class="row g-3 row-cols-1 justify-content-between align-items-start">
+        <div class="col">
+            <div class="widgets-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Framework</th>
+                                        <th>Stars</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let singledata of chartData">
+                                        <td>{{ singledata.framework }}</td>
+                                        <td>{{ singledata.stars }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="widgets-card">
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="formSet" (ngSubmit)="submit()">
+                            <div class="row g-3 row-cols-1 row-cols-md-3 align-items-center">
+                                <div class="col">
+                                    <input type="text" formControlName="framework" placeholder="Enter Lable Name" class="form-control"/>
+                                </div>
+                                <div class="col">
+                                    <input type="text" formControlName="stars" placeholder="Enter Values" class="form-control"/>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary btn-md">Submit</button>
+                                </div>
+                            </div>   
+                        </form>
+                        <figure id="bar"></figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+   
+
+</div>

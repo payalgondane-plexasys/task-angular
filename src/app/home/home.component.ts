@@ -10,6 +10,14 @@ export class HomeComponent implements OnInit  {
   myForm!: FormGroup;
   currentStep: number = 1;
 
+  chartData = [
+    { label: 'Category 1', value: 30 },
+    { label: 'Category 2', value: 45 },
+    { label: 'Category 3', value: 20 },
+    
+  ];
+
+
   selectedOption: string | undefined;
  
   options=[
