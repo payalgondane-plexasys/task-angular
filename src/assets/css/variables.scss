@@ -33,33 +33,79 @@
 :: Common CSS
 ---------------------------------------------------------- */
 
-
 /* Variables */
 
 $gray-color: #efefef;
 $darkgray-color: #2b2b2b;
-$blue-color: #284070;
-$lightblue-color: #35538D;
-$pink-color: #A6407C;
-$lightyellow-color: #FDDC8D;
-$sky-color: #2485C7;
+$orange-color: #ed7e13;
+$bulishblack-color:#01222e;
 $white-color: #fff;
-$black-color: #414141;
-$whitesmoke-color: #F5F5F5;
+$black-color: #242424;
+$tealblue-color: #01445a;
+$goldenochre-color: #e9c46a;
+$sandybrown-color: #f4a261;
+$whitesmoke-color: #f0f0f5;
+$navyblue-color: #21273d;
 
 /* Class */
+
+.gray-color {
+    color: $gray-color;
+}
 
 .darkgray-color {
     color: $darkgray-color;
 }
 
-.blue-color {
-    color: $blue-color;
+.orange-color {
+    color: $orange-color;
+}
+.navyblue-color {
+    color: $navyblue-color;
 }
 
-.sky-color {
-    color: $sky-color;
+.shadow {
+    box-shadow: 0 4px 25px 0 #a8b4d01a;
 }
+
+
+/* --------------------- */
+
+.bulishblack-color {
+    color: $bulishblack-color;
+}
+
+.black-color {
+    color: $black-color;
+}
+
+.tealblue-color {
+    color: $tealblue-color;
+}
+
+.goldenochre-color {
+    color: $goldenochre-color;
+}
+
+.sandybrown-color {
+    color: $sandybrown-color;
+}
+
+.whitesmoke-color {
+    color: $whitesmoke-color;
+}
+
+.bg-goldenochre-color {
+    background-color: $goldenochre-color;
+}
+
+.bg-tealblue-color {
+    background-color: $tealblue-color !important;
+}
+
+
+
+
 
 
 /*-------------------------------------------------------------------
@@ -92,7 +138,7 @@ html {
 
  ::selection {
     color: $white-color;
-    background: $lightblue-color;
+    background: $orange-color;
 }
 
 ul,
@@ -108,7 +154,7 @@ a {
     &:hover,
     &:focus {
         @include transition(all 0.3s ease-out);
-        color: $blue-color;
+        color: $orange-color;
     }
 }
 
@@ -190,20 +236,20 @@ h6 {
 }
 
 .button--effect-1 {
-    background-color: $pink-color;
+    background-color: $orange-color;
     color: $white-color;
     @extend .btn-property;
     &:hover {
-        background-color: $blue-color;
+        background-color: $orange-color;
     }
 }
 
 .button--effect-2 {
-    background-color: $blue-color;
+    background-color: $orange-color;
     color: $white-color;
     @extend .btn-property;
     &:hover {
-        background-color: $pink-color;
+        background-color: $orange-color;
     }
 }
 
@@ -215,7 +261,7 @@ select {
     border-radius: 5px;
     height: 48px;
     &:focus {
-        border-color: $sky-color;
+        border-color: $orange-color;
         box-shadow: none;
     }
 }
@@ -235,11 +281,10 @@ select {
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    margin: 0 0 2rem 0;
+    margin: 0 0 1rem 0rem;
+    /* -ms-flex-wrap: wrap; */
     justify-content: space-between;
-    padding: 1rem;
-    background: #F8F8F8;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    padding: 0;
     @media only screen and (max-width: 600px) {
         display: block;
     }
@@ -248,13 +293,32 @@ select {
     }
 }
 
+.common-breadcrum {
+    display: inline-block;
+    font-size: .83rem;
+    margin: 5px 0 20px;
+    li+li {
+        &:before {
+            padding: 0 5px;
+            color: #ccc;
+            content: "/";
+        }
+        &:last-child {
+            color: $orange-color;
+        }
+    }
+    .list-inline-item:not(:last-child) {
+        margin-right: 0;
+    }
+}
+
 .breadcrum-title {
-    line-height: 5px;
+    line-height: 1 !important;
     h2 {
         color: $black-color;
         font-size: 1rem;
-        font-weight: 600;
-        text-transform: capitalize;
+        font-weight: 700;
+        text-transform: uppercase;
         position: relative;
         @media only screen and (max-width: 600px) {
             font-size: .85rem;
@@ -263,13 +327,13 @@ select {
 }
 
 .section-title {
-    margin-bottom: 30px;
+    line-height: 5px;
     h2 {
         color: $black-color;
-        font-size: 1.5rem;
-        font-weight: 400;
-        text-transform: capitalize;
-        text-align: center;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        position: relative;
         @media only screen and (max-width: 600px) {
             font-size: .85rem;
         }

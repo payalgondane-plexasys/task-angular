@@ -1,23 +1,23 @@
 {
   "barchart": [
     {
-      "id": 1,
-      "framework": "Vue",
-      "stars": 80
+      "country": "America",
+      "valuenumber": 23,
+      "id": 1
     },
     {
-      "id": 2,
-      "framework": "ReactJs",
-      "stars": 60
+      "country": "Antonio Moreno",
+      "valuenumber": 54,
+      "id": 2
     },
     {
-      "framework": "HTML",
-      "stars": 10,
+      "country": "maxico",
+      "valuenumber": 33,
       "id": 3
     },
     {
-      "framework": "Laravel",
-      "stars": 80,
+      "country": "America",
+      "valuenumber": 54,
       "id": 4
     }
   ]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from "../services/api.service";
+import { ToastrService } from 'ngx-toastr';
 import * as d3 from 'd3';
 @Component({
   selector: 'app-barchart',
@@ -10,17 +11,34 @@ import * as d3 from 'd3';
 export class BarchartComponent implements OnInit {
   formSet!: FormGroup;
   chartData: any[] = [];
-
-  constructor(private fb: FormBuilder,  private api: ApiService,   ) { }
+  submitted = false;
+  constructor(private fb: FormBuilder,  private api: ApiService,private toastr: ToastrService) { }
 
  ngOnInit(): void {
   this.formSet = this.fb.group({
-    framework:['', [Validators.required]],
-    stars:['', [Validators.required]],
+    country:['', [Validators.required]],
+    valuenumber:['', [Validators.required]],
   })
     this.createSvg();
     this.fetchChartData();
   }
+  get f(){
+    return this.formSet.controls;
+  }
+
+  countryFilter: string = ''; // Property to store the filter value
+
+sortChartData() {
+  this.chartData.sort((a, b) => b.valuenumber - a.valuenumber); // Sort data by number in descending order
+  this.svg.selectAll("rect").remove();
+  this.drawBars();
+}
+
+applyFilter() {
+  const filteredData = this.chartData.filter(item => item.country.includes(this.countryFilter));
+  this.svg.selectAll("rect").remove();
+  this.drawBars(filteredData);
+}
 
   fetchChartData(): void {
     this.api.GET().subscribe(val => {
@@ -30,13 +48,10 @@ export class BarchartComponent implements OnInit {
     });
   }
 
-
-
-
-private svg: any;
-private margin = 50;
-private width = 750 - (this.margin * 2);
-private height = 400 - (this.margin * 2);
+  private svg: any;
+  private margin = { top: 50, right: 20, bottom: 50, left: 50 };
+  private containerWidth!: number;
+  private containerHeight = 400; // Set a fixed height or adjust as needed
 
 // Define a tooltip
 private tooltip: any;
@@ -51,12 +66,15 @@ private getColor(value: number): string {
 }
 
 private createSvg(): void {
-  this.svg = d3.select("figure#bar")
+  const container = d3.select("figure#bar");
+  this.containerWidth = +container.style("width").slice(0, -2);  // Remove 'px'
+
+  this.svg = container
     .append("svg")
-    .attr("width", this.width + (this.margin * 2))
-    .attr("height", this.height + (this.margin * 2))
+    .attr("width", this.containerWidth)
+    .attr("height", this.containerHeight)
     .append("g")
-    .attr("transform", "translate(" + this.margin + "," + this.margin + ")");
+    .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
   // Initialize the tooltip
   this.tooltip = d3.select("figure#bar")
@@ -71,35 +89,37 @@ private createSvg(): void {
     .style("padding", "10px");
 }
 
-private drawBars(): void {
+private drawBars(data = this.chartData): void {
   this.svg.selectAll("rect").remove();
   const y = d3.scaleBand()
-    .range([0, this.height])
-    .domain(this.chartData.map(d => 
-      d.framework    
-    ))
-    .padding(0.2);
+    .range([0, this.containerHeight - this.margin.top - this.margin.bottom])
+    .domain(data.map(d => d.country))
+    .padding(0.3);
 
   this.svg.append("g")
     .call(d3.axisLeft(y));
 
   const x = d3.scaleLinear()
-    .domain([0, 100])
-    .range([0, this.width]);
+    .domain([0, 100]) // Set the X-axis domain to [0, 100]
+    .range([0, this.containerWidth - this.margin.left - this.margin.right]);
 
   this.svg.append("g")
-    .attr("transform", "translate(0," + this.height + ")")
-    .call(d3.axisBottom(x));
+    .attr("transform", "translate(0," + (this.containerHeight - this.margin.top - this.margin.bottom) + ")")
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
 
   const bars = this.svg.selectAll("bars")
-    .data(this.chartData)
+    .data(data)
     .enter()
     .append("rect")
     .attr("x", 0)
-    .attr("y", (d: any) => y(d.framework)) // Use lowercase 'framework'
-    .attr("width", (d: any) => x(d.stars)) // Use lowercase 'stars'
+    .attr("y", (d: any) => y(d.country))
+    .attr("width", (d: any) => x(d.valuenumber))
     .attr("height", y.bandwidth())
-    .attr("fill", (d: any) => this.getColor(d.stars))  // Set color based on value
+    .attr("fill", (d: any) => this.getColor(d.valuenumber))
+    
 
   // Add mouseover and mouseout events to show/hide the tooltip
   bars
@@ -107,9 +127,9 @@ private drawBars(): void {
       this.tooltip.transition()
         .duration(200)
         .style("opacity", 1);
-      this.tooltip.html(`Stars: ${d.stars}`) // Use lowercase 'stars'
-        .style("left", (event.pageX - 50) + "px")
-        .style("top", (event.pageY - 80) + "px");
+      this.tooltip.html(`Value: ${d.valuenumber}`)
+        .style("left", (event.pageX - this.margin.left) + "px")
+        .style("top", (event.pageY - this.margin.top - 30) + "px");
     })
     .on("mouseout", () => {
       this.tooltip.transition()
@@ -120,33 +140,31 @@ private drawBars(): void {
 
 
 submit() {
+  this.submitted = true;
   if (this.formSet.valid) {
-    const newFramework = this.formSet.value.framework;
-    const newStars = parseInt(this.formSet.value.stars, 10);
-    
-    const postData = { framework: newFramework, stars: newStars }; // Create the object to be posted
-    
+    const newcountry = this.formSet.value.country;
+    const newValuenumber = parseInt(this.formSet.value.valuenumber, 10);
+
+    if (newValuenumber > 100) {
+      this.toastr.error('value cannot be greater than 100', 'Invalid Value');
+      return; 
+    }
+
+    const postData = { country: newcountry, valuenumber: newValuenumber };
+
     this.api.POST(postData).subscribe(response => {
-      console.log("POST response:", response); // Log the response if needed
-      
-      // Add the new data to the chartData array and redraw the bars
       this.chartData.push(postData);
+
+      this.svg.selectAll("rect").remove();
       this.drawBars();
-      
-      this.formSet.reset();
-    });
+      this.toastr.success("Added Successfully!", "Barchart");
+    });   
+    
   }
+ 
 }
 
-submitold() {
-  if (this.formSet.valid) {
-    const newFramework = this.formSet.value.framework;
-    const newStars = parseInt(this.formSet.value.stars, 10);   
-    this.chartData.push({"framework": newFramework, "stars": newStars}); 
-    this.drawBars();   
-    this.formSet.reset();
-  }
-}
+
 
 
 

@@ -2,7 +2,7 @@
 .setCoverImage {
     position: relative;
     .cover-image {
-        background: $lightyellow-color;
+        background: $orange-color;
         padding: 0.5rem;
         border-radius: 5px;
         position: absolute;
@@ -31,7 +31,7 @@
 }
 
 .block-profile {
-    background-color: $sky-color;
+    background-color: $orange-color;
     padding: 15px;
     width: 80%;
     min-height: 45%;
@@ -67,7 +67,7 @@
     height: 34px;
     margin-bottom: 0;
     border-radius: 100%;
-    background: $lightyellow-color;
+    background: $orange-color;
     border: 1px solid transparent;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
     cursor: pointer;
@@ -167,14 +167,14 @@
                     }
                 }
                 .nav-link.active {
-                    border: 2px solid $blue-color;
+                    border: 2px solid $orange-color;
                     .round-tab {
                         width: 14px;
                         height: 14px;
                         line-height: 30px;
                         display: inline-block;
                         border-radius: 50%;
-                        background: $blue-color;
+                        background: $orange-color;
                         z-index: 2;
                         position: relative;
                         left: 0;

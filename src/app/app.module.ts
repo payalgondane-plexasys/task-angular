@@ -10,7 +10,8 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
 import { BarchartComponent } from './barchart/barchart.component';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -29,7 +30,8 @@ import { BarchartComponent } from './barchart/barchart.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
- 
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

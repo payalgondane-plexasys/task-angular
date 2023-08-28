@@ -3,11 +3,11 @@
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
             <a class="navbar-brand brand-logo" routerLink="/home">
                 logo
-                <!-- <img src="./assets/images/logo_horizontal.png" class="me-2" alt="logo" /> -->
+                <img src="./assets/images/logo_horizontal.png" class="me-2" alt="logo" />
             </a>
             <a class="navbar-brand brand-logo-mini" routerLink="/home">
                 logo
-                <!-- <img src="./assets/images/logo.png" alt="logo" /> -->
+                <img src="./assets/images/logo.png" alt="logo" />
             </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -15,12 +15,15 @@
                 <span class="bx bx-menu"></span>
             </button>
             <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item d-none d-lg-block">
-                    <button type="button" class="btn button--effect-3">Create  <i class="fa fa-plus mx-0"></i></button>
-                </li>
-                <li class="nav-item nav-search d-none d-lg-block">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                <li class="nav-item dropdown">
+                    <a id="language" href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle"><span class="profile-text m-0">Language</span></a>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="language">
+                        <a class="dropdown-item">
+                            English
+                        </a>
+                        <a class="dropdown-item">
+                            Arabic
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item dropdown ms-1 me-1">
@@ -55,45 +58,11 @@
                         </a>
                     </div>
                 </li>
-                <li class="nav-item dropdown ms-1 me-1">
-                    <a class="nav-link nav-circle dropdown-toggle" id="que" href="#" data-bs-toggle="dropdown">
-                        <i class="fa fa-question-circle  mx-0"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="que">
-                        <a class="dropdown-item">
-                            Test
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown ms-1 me-1">
-                    <a class="nav-link nav-circle dropdown-toggle" id="setting" href="#" data-bs-toggle="dropdown">
-                        <i class="fa fa-cog mx-0"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="setting">
-                        <a class="dropdown-item">
-                            Manage Profile
-                        </a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown ms-1">
-                    <a class="nav-link nav-circle dropdown-toggle" id="download" href="#" data-bs-toggle="dropdown">
-                        <i class="fa fa-download mx-0"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="download">
-                        <a class="dropdown-item">
-                            Download
-                        </a>
-                    </div>
-                </li>
-
-
-
-
-
+               
+                
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                        <img src="https://www.bootstrapdash.com/demo/skydash/template/images/faces/face28.jpg" alt="profile" />
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="profile" title="profile" />
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item">

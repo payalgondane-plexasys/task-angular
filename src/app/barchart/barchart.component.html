@@ -9,14 +9,14 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Framework</th>
-                                        <th>Stars</th>
+                                        <th>Country Name</th>
+                                        <th>Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let singledata of chartData">
-                                        <td>{{ singledata.framework }}</td>
-                                        <td>{{ singledata.stars }}</td>
+                                        <td>{{ singledata.country }}</td>
+                                        <td>{{ singledata.valuenumber }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -29,13 +29,41 @@
             <div class="widgets-card">
                 <div class="card">
                     <div class="card-body">
+                        <div class="row g-3 row-cols-1 row-cols-md-2 justify-content-between align-items-center mb-3">
+                            <div class="col">
+                                <input type="text" [(ngModel)]="countryFilter" placeholder="Filter by country" class="form-control"/>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-secondary me-3" (click)="applyFilter()">Apply Filter</button>
+                                <button class="btn btn-secondary" (click)="sortChartData()">Sort</button>
+                            </div>
+                        </div>
+                       
+                       
+
+
                         <form [formGroup]="formSet" (ngSubmit)="submit()">
                             <div class="row g-3 row-cols-1 row-cols-md-3 align-items-center">
-                                <div class="col">
-                                    <input type="text" formControlName="framework" placeholder="Enter Lable Name" class="form-control"/>
+                                <div class="col">                                    
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" formControlName="country" name="country" placeholder="Enter country" [ngClass]="{ 'is-invalid': submitted && f['country'].errors }">
+                                        <label for="country">country</label>
+                                        <div *ngIf = "submitted && f['country'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['country'].errors['required']">This Field is required.</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col">
-                                    <input type="text" formControlName="stars" placeholder="Enter Values" class="form-control"/>
+
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" formControlName="valuenumber" name="valuenumber" placeholder="valuenumber" [ngClass]="{ 'is-invalid': submitted && f['valuenumber'].errors }">
+                                        <label for="valuenumber">valuenumber</label>
+                                        <div *ngIf="submitted && f['valuenumber'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['valuenumber'].errors['required']">This Field is required.</div>
+                                            <div *ngIf="f['valuenumber'].errors['max']">cannot be greater than 100.</div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 <div class="col">
                                     <button type="submit" class="btn btn-primary btn-md">Submit</button>
